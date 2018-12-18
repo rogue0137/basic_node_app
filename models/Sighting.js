@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var SightingSchema = new mongoose.Schema({
   bear_type: String,
-  num_of_sightings: Number,
+  num_of_bears: Number,
   zip_code: Number,
   notes: String,
   created_at: { type: Date, default: Date.now },

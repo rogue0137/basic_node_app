@@ -19,12 +19,30 @@ router.post('/', function(req, res, next) {
   });
 });
 
+// // Return an array of sightings, include a unique ID with each.
+// // Supported query params, all optional
+// `start_date` (inclusive) (default: all time)
+// `end_date` (inclusive) (default: all time)
+// // `bear_type` (default: all types)
+// // `zip_code` (default: all zip codes)
+// `sort` (default: created timestamp, ascending. 
+//   only supported value is `num_bears`)
+
 /* GET /sighting/search */
 router.get('/search', function(req, res) {
   var query = req.query;
   console.log(query);
 
-  Sighting.find(query, function (err, post) {
+  if (query.start_date) {
+    query.created_at = new Date(query.start_date);
+  }
+
+
+  Sighting.find(query, {
+    sort: {
+        num_bears: 1 //Sort by Date Added DESC
+    }
+}, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
