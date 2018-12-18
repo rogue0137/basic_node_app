@@ -28,14 +28,11 @@ router.get('/:id', function(req, res, next) {
 });
 
 /* GET /sighting/search */
-router.get('/search', function(req, res, next) {
+router.get('/search:param', function(req, res) {
   var param = req.param("param");
   console.log(param);
 
-  Sighting.find( 
-    { 
-      'bear_type' : param 
-    }, function (err, post) {
+  Sighting.find({"bear_type": "harry"}, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
