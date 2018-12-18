@@ -19,14 +19,6 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* GET /sighting/:id */
-router.get('/:id', function(req, res, next) {
-  Sighting.findById(req.params.id, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-});
-
 /* GET /sighting/search */
 router.get('/search:param', function(req, res) {
   var param = req.param("param");
@@ -37,6 +29,16 @@ router.get('/search:param', function(req, res) {
     res.json(post);
   });
 });
+
+/* GET /sighting/:id */
+router.get('/:id', function(req, res, next) {
+  Sighting.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+
 
 
 
