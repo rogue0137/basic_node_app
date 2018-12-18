@@ -20,11 +20,11 @@ router.post('/', function(req, res, next) {
 });
 
 /* GET /sighting/search */
-router.get('/search:param', function(req, res) {
-  var param = req.param("param");
-  console.log(param);
+router.get('/search', function(req, res) {
+  var query = req.query;
+  console.log(query);
 
-  Sighting.find({"bear_type": "harry"}, function (err, post) {
+  Sighting.find(query, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
